@@ -45,5 +45,6 @@ coverage/
 
 # Azure
 web.config
+Deployment-*.zip
 
 # Package managers
