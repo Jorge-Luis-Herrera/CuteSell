@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
           <div>
             <h1 className="text-4xl font-bold tracking-tight">Panel de <span className="text-gradient-plush">Administración</span></h1>
-            <p className="text-[var(--color-plush-soft)]/50 mt-2">Cute Sell 🧸 / Gestión de Inventario</p>
+            <p className="text-[var(--color-plush-soft)]/50 mt-2">Cute Sell / Gestión de Inventario</p>
           </div>
           <div className="flex gap-4">
             <Link href="/login" className="px-6 py-2 bg-[var(--color-plush-mid)]/20 hover:bg-[var(--color-plush-mid)]/40 border border-white/5 rounded-full flex items-center gap-2 transition-all text-sm font-medium">

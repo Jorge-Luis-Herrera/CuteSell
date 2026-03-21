@@ -84,21 +84,18 @@ export default function Home() {
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-28 right-10 md:right-20 text-5xl md:text-7xl opacity-20 select-none"
         >
-          🧸
         </motion.div>
         <motion.div
           animate={{ y: [6, -6, 6], rotate: [0, 10, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-20 right-[15%] text-3xl md:text-5xl opacity-15 select-none"
         >
-          💜
         </motion.div>
         <motion.div
           animate={{ y: [-5, 5, -5], x: [-3, 3, -3] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-[45%] left-[5%] text-2xl md:text-4xl opacity-10 select-none hidden md:block"
         >
-          ✨
         </motion.div>
 
         <div className="max-w-3xl">
@@ -119,7 +116,7 @@ export default function Home() {
             className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] text-white"
           >
             Encuentra tu <br />
-            <span className="text-gradient-plush italic">compañero perfecto</span> 🧸
+            <span className="text-gradient-plush italic">compañero perfecto</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -155,7 +152,7 @@ export default function Home() {
         <div className="flex whitespace-nowrap" style={{ animation: 'marquee 25s linear infinite' }}>
           {[...Array(2)].map((_, i) => (
             <span key={i} className="text-sm font-medium tracking-[0.3em] uppercase text-[var(--color-plush-soft)]/30 mx-4">
-              ✨ Soft & Cuddly &nbsp;&nbsp; 💜 Premium Quality &nbsp;&nbsp; 🧸 Handmade with Love &nbsp;&nbsp; 🌸 Ediciones Exclusivas &nbsp;&nbsp; 💖 Abrazos Garantizados &nbsp;&nbsp; ⭐ Coleccionables &nbsp;&nbsp;
+              Soft & Cuddly &nbsp;&nbsp; Premium Quality &nbsp;&nbsp; Handmade with Love &nbsp;&nbsp; Ediciones Exclusivas &nbsp;&nbsp; Abrazos Garantizados &nbsp;&nbsp; Coleccionables &nbsp;&nbsp;
             </span>
           ))}
         </div>
@@ -218,7 +215,7 @@ export default function Home() {
             ))
           ) : (
             <div className="col-span-full py-20 text-center glass-card border-dashed">
-              <div className="text-5xl mb-4">🧸</div>
+              <div className="text-5xl mb-4"></div>
               <p className="text-[var(--color-plush-soft)]/40 italic">Preparando nuestra colección adorable...</p>
             </div>
           )}
@@ -276,7 +273,7 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-[var(--color-accent-mint)]/10 blur-[60px] rounded-full" />
           
           <div className="relative z-10">
-            <div className="text-5xl mb-6">🧸💜</div>
+            <div className="text-5xl mb-6"></div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               ¿Listo para encontrar tu peluche ideal?
             </h2>
@@ -294,7 +291,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-white/5 mt-10 px-6 py-12 text-center text-sm text-[var(--color-plush-soft)]/30">
-        <p>© 2026 Cute Sell. Hecho con 💜 para los amantes de los peluches.</p>
+        <p>© 2026 Cute Sell. Hecho con amor para los amantes de los peluches.</p>
       </footer>
     </main>
   );

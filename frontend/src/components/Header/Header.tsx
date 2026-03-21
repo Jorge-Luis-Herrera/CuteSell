@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           <div className={styles.logo}>
           <Link href="/">
             <h1 className="text-xl md:text-2xl font-black tracking-tighter">
-              🧸 <span className="hidden sm:inline">Cute <span className="text-gradient-plush">Sell</span></span>
+              <span className="hidden sm:inline">Cute <span className="text-gradient-plush">Sell</span></span>
               <span className="sm:hidden text-gradient-plush">CS</span>
             </h1>
           </Link>

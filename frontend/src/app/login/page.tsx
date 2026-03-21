@@ -47,7 +47,7 @@ export default function LoginPage() {
             <ShieldCheck size={32} className="text-[var(--color-accent-pink)]" />
           </div>
           <h1 className="text-3xl font-bold text-white tracking-tight leading-tight">Acceso <span className="text-gradient-plush">Admin</span></h1>
-          <p className="text-[var(--color-plush-soft)]/50 mt-2 text-sm">Gestiona la experiencia Cute Sell 🧸</p>
+          <p className="text-[var(--color-plush-soft)]/50 mt-2 text-sm">Gestiona la experiencia Cute Sell</p>
         </div>
 
         <form onSubmit={handleLogin} className="mt-10 space-y-6">
@@ -85,7 +85,7 @@ export default function LoginPage() {
             type="submit"
             className="w-full bg-[var(--color-accent-pink)] hover:bg-[#FF4081] text-white font-bold py-4 rounded-2xl transition-all shadow-[0_8px_24px_rgba(255,107,157,0.3)] hover:shadow-[0_12px_32px_rgba(255,107,157,0.5)] transform hover:-translate-y-1"
           >
-            Entrar al Panel 🧸
+            Entrar al Panel
           </button>
         </form>
 

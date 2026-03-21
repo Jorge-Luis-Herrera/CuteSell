@@ -7,7 +7,7 @@ import './globals.css';
 const outfit = Outfit({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] });
 
 export const metadata: Metadata = {
-  title: 'Cute Sell — Tu Mundo de Peluches 🧸',
+  title: 'Cute Sell — Tu Mundo de Peluches',
   description: 'Descubre la colección más adorable de peluches premium. Suavidad, calidad y amor en cada abrazo.',
 };
 

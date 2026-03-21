@@ -45,7 +45,7 @@ const ManageShelves = () => {
             });
             if (res.ok) {
                 setNewShelfTitle("");
-                setSuccess("Colección creada con éxito 🧸");
+                setSuccess("Colección creada con éxito");
                 fetchShelves();
             } else {
                 throw new Error("Error al crear");
@@ -75,7 +75,7 @@ const ManageShelves = () => {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-black italic text-gradient-plush">GESTIÓN DE COLECCIONES 🧸</h2>
+                <h2 className="text-2xl font-black italic text-gradient-plush">GESTIÓN DE COLECCIONES</h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -109,7 +109,7 @@ const ManageShelves = () => {
                         </div>
 
                         <button type="submit" className="w-full bg-[var(--color-accent-pink)] text-white font-bold py-3 rounded-xl hover:bg-[#FF4081] transition-all transform active:scale-95 shadow-lg shadow-[var(--color-accent-pink)]/20">
-                            Crear Colección 💜
+                            Crear Colección
                         </button>
                     </form>
                 </div>
@@ -150,7 +150,7 @@ const ManageShelves = () => {
                                 {shelves.length === 0 && (
                                     <tr>
                                         <td colSpan={4} className="px-6 py-10 text-center text-[var(--color-plush-soft)]/20 italic">
-                                            No hay colecciones creadas todavía. 🧸
+                                            No hay colecciones creadas todavía.
                                         </td>
                                     </tr>
                                 )}

@@ -82,7 +82,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 {fullImgUrl ? (
                   <img src={fullImgUrl} alt={name} className={styles.mainImage3d} />
                 ) : (
-                  <div className="w-full h-full bg-[var(--color-plush-mid)]/20 flex items-center justify-center rounded-xl text-[var(--color-plush-soft)]/40 italic text-6xl">🧸</div>
+                  <div className="w-full h-full bg-[var(--color-plush-mid)]/20 flex items-center justify-center rounded-xl text-[var(--color-plush-soft)]/40 italic text-6xl"></div>
                 )}
                 <div className={styles.clickHint}><Maximize2 size={12} className="inline mr-1" /> Toca para ampliar</div>
               </div>
@@ -113,16 +113,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </div>
                 
                 <p className="text-[var(--color-plush-soft)]/60 text-sm leading-relaxed my-4 h-24 overflow-y-auto custom-scrollbar">
-                  {descripcion || "Este peluche ha sido seleccionado con amor para brindarte la mejor experiencia Cute Sell 🧸. Suave, adorable y perfecto para abrazar."}
+                  {descripcion || "Este peluche ha sido seleccionado con amor para brindarte la mejor experiencia Cute Sell. Suave, adorable y perfecto para abrazar."}
                 </p>
 
                 <a
-                  href={`https://wa.me/58922781?text=${encodeURIComponent(`¡Hola Cute Sell! 🧸 Me interesa comprar ${compraCantidad} unidad(es) de: ${name}`)}`}
+                  href={`https://wa.me/58922781?text=${encodeURIComponent(`¡Hola Cute Sell! Me interesa comprar ${compraCantidad} unidad(es) de: ${name}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.actionBtn} w-full flex items-center justify-center gap-2`}
                 >
-                  <Heart size={18} /> ¡Lo quiero! 💜
+                  <Heart size={18} /> ¡Lo quiero!
                 </a>
               </div>
             </div>

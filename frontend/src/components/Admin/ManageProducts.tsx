@@ -142,7 +142,7 @@ const ManageProducts = () => {
                 if (previewUrl && previewUrl.startsWith('blob:')) {
                     URL.revokeObjectURL(previewUrl);
                 }
-                setSuccess(editingId ? "Peluche actualizado 🧸" : "Peluche guardado 🧸");
+                setSuccess(editingId ? "Peluche actualizado" : "Peluche guardado");
                 handleCancelEdit();
                 fetchData();
             } else {
@@ -182,7 +182,7 @@ const ManageProducts = () => {
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            <h2 className="text-2xl font-black italic text-gradient-plush">GESTIÓN DE PELUCHES 🧸</h2>
+            <h2 className="text-2xl font-black italic text-gradient-plush">GESTIÓN DE PELUCHES</h2>
 
             <form className="glass-panel p-8 space-y-6" onSubmit={handleSubmit}>
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -315,7 +315,7 @@ const ManageProducts = () => {
                                 <tr key={p.id} className="hover:bg-white/5 transition-colors group">
                                     <td className="px-6 py-4">
                                         <div className="w-12 h-12 rounded-xl bg-[var(--color-plush-dark)] overflow-hidden border border-white/5 group-hover:border-[var(--color-accent-pink)]/30 transition-colors">
-                                            {p.imagenUrl ? <img src={`${STATIC_URL}${p.imagenUrl}`} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-lg">🧸</div>}
+                                            {p.imagenUrl ? <img src={`${STATIC_URL}${p.imagenUrl}`} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-lg"></div>}
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
@@ -344,7 +344,7 @@ const ManageProducts = () => {
                              ))}
                              {products.length === 0 && !isLoading && (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-12 text-center text-[var(--color-plush-soft)]/20 italic">No hay peluches en el inventario. 🧸</td>
+                                    <td colSpan={5} className="px-6 py-12 text-center text-[var(--color-plush-soft)]/20 italic">No hay peluches en el inventario.</td>
                                 </tr>
                              )}
                         </tbody>

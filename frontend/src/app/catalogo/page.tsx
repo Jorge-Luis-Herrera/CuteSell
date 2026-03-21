@@ -51,7 +51,7 @@ export default function CatalogoPage() {
     if (destacadosFiltrados.length > 0) {
       lista.push({
         id: 'featured-shelf',
-        titulo: 'Los Más Queridos 💜',
+        titulo: 'Los Más Queridos',
         subtitulo: 'SELECCIÓN EXCLUSIVA CUTE SELL',
         items: destacadosFiltrados,
         isFeatured: true
@@ -90,7 +90,7 @@ export default function CatalogoPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-black tracking-tight mb-4"
           >
-            NUESTRA <span className="text-gradient-plush italic">COLECCIÓN</span> 🧸
+            NUESTRA <span className="text-gradient-plush italic">COLECCIÓN</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -132,7 +132,7 @@ export default function CatalogoPage() {
                   animate={{ opacity: 1 }}
                   className="text-center py-20 bg-[var(--color-plush-mid)]/10 rounded-3xl border border-white/5"
                 >
-                  <div className="text-5xl mb-4">🔍</div>
+                  <div className="text-5xl mb-4"></div>
                   <p className="text-[var(--color-plush-soft)]/40 italic">No encontramos peluches con ese nombre. ¡Intenta otra búsqueda!</p>
                 </motion.div>
               )}

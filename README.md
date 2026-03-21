@@ -5,7 +5,7 @@
 
 Tienda online de peluches premium con experiencia de compra moderna y atractiva.
 
-## 🧸 Características
+## Características
 
 - **Catálogo Interactivo** - Explora nuestra colección de peluches
 - **Gestión de Inventario** - Control completo de stock y productos
@@ -26,7 +26,7 @@ Tienda online de peluches premium con experiencia de compra moderna y atractiva.
 - **File Upload** - Manejo de imágenes de productos
 - **Static Serving** - Archivos estáticos optimizados
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```text
 cutesell/
@@ -44,7 +44,7 @@ cutesell/
     └── public/         # Archivos estáticos
 ```
 
-## 🚀 Instalación y Ejecución
+## Instalación y Ejecución
 
 ### Desarrollo Local
 
@@ -75,12 +75,12 @@ npm run build
 npm run start
 ```
 
-## 🔐 Acceso Admin
+## Acceso Admin
 
 - **Usuario:** `cutesell`
 - **Contraseña:** `cutesell2026`
 
-## 📦 Deploy
+## Deploy
 
 ### Azure App Service
 
@@ -100,7 +100,7 @@ npm run build
 zip -r cutesell.zip . -x ".git/*" "node_modules/*" "frontend/node_modules/*" "backend/node_modules/*"
 ```
 
-## 🎨 Características Destacadas
+## Características Destacadas
 
 - **Memory Management** - Optimizado para bajo consumo de RAM
 - **Image Optimization** - Manejo eficiente de imágenes con cleanup automático
@@ -116,7 +116,7 @@ zip -r cutesell.zip . -x ".git/*" "node_modules/*" "frontend/node_modules/*" "ba
 - `npm run dev:frontend` - Desarrollo frontend
 - `npm run start` - Producción unificado
 
-## 📝 Notas
+## Notas
 
 - El frontend genera archivos estáticos en `frontend/out`
 - El backend sirve el frontend desde `/api` y archivos desde `/uploads`
