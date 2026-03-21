@@ -47,6 +47,3 @@ coverage/
 web.config
 
 # Package managers
-package-lock.json
-/frontend/package-lock.json
-/backend/package-lock.json
