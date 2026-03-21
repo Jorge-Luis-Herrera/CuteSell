@@ -46,5 +46,10 @@ coverage/
 # Azure
 web.config
 Deployment-*.zip
+deployment.json
+deployment_operations.json
+cutesell-publish-profile.xml
+*.PublishSettings
+.publish-profile.xml
 
 # Package managers
