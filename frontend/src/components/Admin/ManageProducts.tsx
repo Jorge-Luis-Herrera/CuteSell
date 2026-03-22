@@ -10,6 +10,8 @@ const ManageProducts = () => {
     const [products, setProducts] = useState<any[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const emptyProduct = {
         nombre: "",
@@ -83,7 +85,7 @@ const ManageProducts = () => {
             esDomicilio: product.esDomicilio || false,
         });
         setSelectedFile(null);
-        setPreviewUrl(product.imagenUrl ? `${STATIC_URL}${product.imagenUrl}` : null);
+        setPreviewUrl(product.imagenUrl ? (product.imagenUrl.startsWith('http') ? product.imagenUrl : `${STATIC_URL}${product.imagenUrl}`) : null);
         setError("");
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -118,9 +120,14 @@ const ManageProducts = () => {
         }
 
         try {
+            setIsSubmitting(true);
+            setUploadProgress(10);
+            
             let base64Image = null;
             if (selectedFile) {
+                setUploadProgress(30);
                 base64Image = await fileToBase64(selectedFile);
+                setUploadProgress(60);
             }
 
             const payload = {
@@ -128,6 +135,7 @@ const ManageProducts = () => {
                 imagenUrl: base64Image || (editingId ? products.find(p => p.id === editingId)?.imagenUrl : null)
             };
 
+            setUploadProgress(80);
             const url = editingId ? `${API_URL}/inventory/product/${editingId}` : `${API_URL}/inventory/product`;
             const method = editingId ? "PATCH" : "POST";
 
@@ -137,8 +145,9 @@ const ManageProducts = () => {
                 body: JSON.stringify(payload)
             });
 
+            setUploadProgress(100);
+
             if (res.ok) {
-                // Liberar URL de objeto después de uso exitoso
                 if (previewUrl && previewUrl.startsWith('blob:')) {
                     URL.revokeObjectURL(previewUrl);
                 }
@@ -150,6 +159,9 @@ const ManageProducts = () => {
             }
         } catch (err) {
             setError("Error al procesar el peluche");
+        } finally {
+            setIsSubmitting(false);
+            setUploadProgress(0);
         }
     };
 
@@ -184,7 +196,26 @@ const ManageProducts = () => {
         <div className="space-y-8 animate-in fade-in duration-500">
             <h2 className="text-2xl font-black italic text-gradient-plush">GESTIÓN DE PELUCHES</h2>
 
-            <form className="glass-panel p-8 space-y-6" onSubmit={handleSubmit}>
+            <form className="glass-panel p-8 space-y-6 relative overflow-hidden" onSubmit={handleSubmit}>
+                {isSubmitting && (
+                    <div className="absolute inset-0 z-50 bg-[var(--color-plush-dark)]/80 backdrop-blur-md flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
+                        <div className="w-20 h-20 mb-6 relative">
+                            <div className="absolute inset-0 border-4 border-[var(--color-accent-pink)]/20 rounded-full"></div>
+                            <div className="absolute inset-0 border-4 border-[var(--color-accent-pink)] rounded-full border-t-transparent animate-spin"></div>
+                            <ImageIcon className="absolute inset-0 m-auto text-[var(--color-accent-pink)]" size={32} />
+                        </div>
+                        <h4 className="text-xl font-bold text-white mb-2">Procesando Peluche...</h4>
+                        <p className="text-sm text-[var(--color-plush-soft)]/60 mb-8 max-w-[280px]">Estamos preparando la magia. Esto puede tardar unos segundos si la imagen es pesada.</p>
+                        
+                        <div className="w-full max-w-xs bg-white/5 h-2 rounded-full overflow-hidden border border-white/10">
+                            <div 
+                                className="h-full bg-gradient-to-r from-[var(--color-accent-pink)] to-purple-500 transition-all duration-500 ease-out"
+                                style={{ width: `${uploadProgress}%` }}
+                            ></div>
+                        </div>
+                        <span className="mt-2 text-[10px] font-black text-[var(--color-accent-pink)] uppercase tracking-widest">{uploadProgress}%</span>
+                    </div>
+                )}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <h3 className="text-xl font-bold text-white flex items-center gap-2">
                          {editingId ? <Edit2 size={20} className="text-[var(--color-accent-pink)]" /> : <Plus size={20} className="text-[var(--color-accent-pink)]" />}
@@ -285,8 +316,8 @@ const ManageProducts = () => {
                                     {selectedFile ? 'Cambiar Imagen' : 'Seleccionar Imagen'}
                                     <input type="file" onChange={handleFileChange} accept="image/*" className="hidden" />
                                 </label>
-                                <button type="submit" className="w-full bg-[var(--color-accent-pink)] text-white font-black uppercase text-xs py-3 rounded-xl hover:bg-[#FF4081] transition-all transform active:scale-95 shadow-lg shadow-[var(--color-accent-pink)]/20">
-                                    {editingId ? 'Actualizar Peluche' : 'Crear Peluche'}
+                                 <button type="submit" disabled={isSubmitting} className="w-full bg-[var(--color-accent-pink)] text-white font-black uppercase text-xs py-3 rounded-xl hover:bg-[#FF4081] transition-all transform active:scale-95 shadow-lg shadow-[var(--color-accent-pink)]/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    {isSubmitting ? 'Guardando...' : (editingId ? 'Actualizar Peluche' : 'Crear Peluche')}
                                 </button>
                              </div>
                         </div>
@@ -315,7 +346,14 @@ const ManageProducts = () => {
                                 <tr key={p.id} className="hover:bg-white/5 transition-colors group">
                                     <td className="px-6 py-4">
                                         <div className="w-12 h-12 rounded-xl bg-[var(--color-plush-dark)] overflow-hidden border border-white/5 group-hover:border-[var(--color-accent-pink)]/30 transition-colors">
-                                            {p.imagenUrl ? <img src={`${STATIC_URL}${p.imagenUrl}`} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-lg"></div>}
+                                            {p.imagenUrl ? (
+                                                <img 
+                                                    src={p.imagenUrl.startsWith('http') ? p.imagenUrl : `${STATIC_URL}${p.imagenUrl}`} 
+                                                    className="w-full h-full object-cover" 
+                                                />
+                                             ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-lg"></div>
+                                             )}
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">

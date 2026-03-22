@@ -9,22 +9,16 @@ import { useSearch } from '@/contexts/SearchContext';
 export default function CatalogoPage() {
   const { searchQuery } = useSearch();
   const [inventario, setInventario] = useState<any[]>([]);
-  const [destacados, setDestacados] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [invRes, featRes] = await Promise.all([
-          fetch(`${API_URL}/inventory`),
-          fetch(`${API_URL}/inventory/featured`)
-        ]);
+        const invRes = await fetch(`${API_URL}/inventory`);
 
-        if (invRes.ok && featRes.ok) {
+        if (invRes.ok) {
           const inv = await invRes.json();
-          const feat = await featRes.json();
           setInventario(inv);
-          setDestacados(feat);
         }
       } catch (error) {
         console.error('Error fetching catalog:', error);
@@ -36,27 +30,8 @@ export default function CatalogoPage() {
   }, []);
 
   const inventarioAMostrar = useMemo(() => {
-    const lista = [];
+    const lista: any[] = [];
     const searchLower = searchQuery.toLowerCase().trim();
-
-    // Filtrar destacados de manera optimizada
-    let destacadosFiltrados = destacados;
-    if (searchLower) {
-      destacadosFiltrados = destacados.filter((p: any) => 
-        p.nombre.toLowerCase().includes(searchLower) || 
-        (p.descripcion && p.descripcion.toLowerCase().includes(searchLower))
-      );
-    }
-
-    if (destacadosFiltrados.length > 0) {
-      lista.push({
-        id: 'featured-shelf',
-        titulo: 'Los Más Queridos',
-        subtitulo: 'SELECCIÓN EXCLUSIVA CUTE SELL',
-        items: destacadosFiltrados,
-        isFeatured: true
-      });
-    }
 
     // Optimizar filtrado de inventario
     inventario.forEach(shelf => {
@@ -79,7 +54,7 @@ export default function CatalogoPage() {
     });
 
     return lista;
-  }, [inventario, destacados, searchQuery]);
+  }, [inventario, searchQuery]);
 
   return (
     <div className="min-h-screen bg-[#1a1025] text-white selection:bg-[var(--color-accent-pink)] selection:text-white">

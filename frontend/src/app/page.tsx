@@ -6,10 +6,13 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
-import { API_URL, STATIC_URL } from '@/lib/config';
+import { API_URL, STATIC_URL, CONTACT_PHONE } from '@/lib/config';
+import ProductModal from '@/components/Catalog/ProductModal';
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
+  const whatsappUrl = `https://wa.me/${CONTACT_PHONE.replace(/\s+/g, '')}?text=Hola%20Cute%20Sell!%20Me%20interesa%20comprar%20un%20peluche.`;
 
   useEffect(() => {
     async function fetchFeatured() {
@@ -22,12 +25,14 @@ export default function Home() {
               id: p.id,
               title: p.nombre,
               price: p.precio,
+              description: p.descripcion,
+              quantity: p.cantidad,
               tags: [
                 p.esExclusivo && 'Exclusivo',
                 p.esOferta && 'Oferta',
                 p.esDomicilio && 'Envío'
               ].filter(Boolean),
-              img: p.imagenUrl ? (p.imagenUrl.startsWith('http') ? p.imagenUrl : `http://localhost:3000/uploads/${p.imagenUrl}`) : null,
+              img: p.imagenUrl ? (p.imagenUrl.startsWith('http') ? p.imagenUrl : `${STATIC_URL}${p.imagenUrl}`) : null,
             }));
             setFeaturedProducts(mapped);
           } else {
@@ -138,11 +143,14 @@ export default function Home() {
                 Explorar Colección <ChevronRight className="w-4 h-4" />
               </button>
             </Link>
-            <button
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="glass-panel px-8 py-3.5 rounded-full font-medium hover:bg-white/5 transition-colors flex items-center gap-2 relative border border-white/10"
             >
-              <Heart className="w-4 h-4 text-[var(--color-accent-pink)]" /> Nuestra Historia
-            </button>
+              <Heart className="w-4 h-4 text-[var(--color-accent-pink)]" /> Comprar por WhatsApp
+            </a>
           </motion.div>
         </div>
       </section>
@@ -182,6 +190,7 @@ export default function Home() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ scale: 1.03, y: -4 }}
+                onClick={() => setSelectedProduct(item)}
                 className={`glass-card group relative cursor-pointer ${
                   i % 4 === 0 ? 'md:col-span-2 md:row-span-2' : ''
                 } ${i % 4 === 3 ? 'md:col-span-2' : ''}`}
@@ -289,10 +298,48 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Floating WhatsApp for Better Conversion */}
+      <motion.a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: 'spring' }}
+        whileHover={{ scale: 1.1 }}
+        className="fixed bottom-8 right-8 z-[1000] bg-[#25D366] text-white p-4 rounded-full shadow-[0_8px_32px_rgba(37,211,102,0.3)] flex items-center justify-center group"
+      >
+        <ShoppingBag className="w-6 h-6" />
+        <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] group-hover:ml-3 transition-all duration-500 font-bold whitespace-nowrap">
+          ¡Pide el tuyo!
+        </span>
+      </motion.a>
+
       {/* Footer */}
       <footer className="border-t border-white/5 mt-10 px-6 py-12 text-center text-sm text-[var(--color-plush-soft)]/30">
-        <p>© 2026 Cute Sell. Hecho con amor para los amantes de los peluches.</p>
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
+          <p className="font-bold text-white text-base">Cute <span className="text-gradient-plush">Sell</span></p>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center text-[var(--color-plush-soft)]/50">
+            <a href={whatsappUrl} className="hover:text-[var(--color-accent-pink)] transition-colors flex items-center gap-2">
+              <span className="text-[var(--color-accent-pink)]">WhatsApp:</span> {CONTACT_PHONE}
+            </a>
+            <span>La Habana, Cuba</span>
+          </div>
+          <p className="mt-4">© 2026 Cute Sell. Hecho con amor para los amantes de los peluches.</p>
+        </div>
       </footer>
+      {/* Product Details Modal */}
+      {selectedProduct && (
+        <ProductModal
+          isOpen={!!selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          name={selectedProduct.title}
+          price={selectedProduct.price}
+          quantity={selectedProduct.quantity}
+          imagenUrl={selectedProduct.img}
+          descripcion={selectedProduct.description}
+        />
+      )}
     </main>
   );
 }

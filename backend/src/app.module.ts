@@ -10,15 +10,9 @@ import { InventoryModule } from './inventory/inventory.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    // Servir frontend estático en producción
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../frontend/out'),
-      exclude: ['/api/*', '/uploads/*'],
-    }),
-    // Servir uploads de imágenes
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../uploads'),
-      serveRoot: '/uploads',
+      exclude: ['/api/(.*)', '/uploads/(.*)'],
     }),
     AuthModule,
     InventoryModule,
