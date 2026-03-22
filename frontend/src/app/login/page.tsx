@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'admin@pavel.com' && password === 'admin123') {
+    if ((email === 'admin@cutesell.com' || email === 'cutesell') && password === 'cutesell2026') {
       setStatus('Success! Access Granted.');
       setTimeout(() => {
         router.push('/admin/dashboard');
