@@ -1,17 +1,8 @@
 {
   "shelves": [
-    {
-      "id": 1,
-      "titulo": "Ositos Cariñosos"
-    },
-    {
-      "id": 2,
-      "titulo": "Animalitos Kawaii"
-    },
-    {
-      "id": 3,
-      "titulo": "Edición Limitada"
-    }
+    { "id": 1, "titulo": "Ositos Cariñosos" },
+    { "id": 2, "titulo": "Animalitos Kawaii" },
+    { "id": 3, "titulo": "Edición Limitada" }
   ],
   "products": [
     {
@@ -23,8 +14,7 @@
       "cantidad": 7,
       "precio": 39,
       "imagenUrl": "https://images.unsplash.com/photo-1559440666-374433beca6a?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 1,
-      "id": 1774193803333
+      "shelfId": 1
     },
     {
       "nombre": "Gatito Mochilero",
@@ -35,8 +25,7 @@
       "cantidad": 50,
       "precio": 12,
       "imagenUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 2,
-      "id": 1774193803334
+      "shelfId": 2
     },
     {
       "nombre": "Perrito de Felpa Suave",
@@ -47,8 +36,7 @@
       "cantidad": 38,
       "precio": 12,
       "imagenUrl": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 2,
-      "id": 1774193803335
+      "shelfId": 2
     },
     {
       "nombre": "Conejito de las Nieves",
@@ -59,8 +47,7 @@
       "cantidad": 14,
       "precio": 15,
       "imagenUrl": "https://images.unsplash.com/photo-1582213700057-01007d472252?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 3,
-      "id": 1774193803336
+      "shelfId": 3
     },
     {
       "nombre": "Panda Abrazable",
@@ -71,8 +58,7 @@
       "cantidad": 10,
       "precio": 37,
       "imagenUrl": "https://images.unsplash.com/photo-1564349683136-77e08bef1ef1?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 3,
-      "id": 1774193803337
+      "shelfId": 3
     },
     {
       "nombre": "Pikachu Edición Gorra",
@@ -83,8 +69,7 @@
       "cantidad": 15,
       "precio": 31,
       "imagenUrl": "https://images.unsplash.com/photo-1621478374422-35206faeddfb?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 1,
-      "id": 1774193803338
+      "shelfId": 1
     },
     {
       "nombre": "Dinosaurio Verde Rex",
@@ -95,8 +80,7 @@
       "cantidad": 33,
       "precio": 43,
       "imagenUrl": "https://images.unsplash.com/photo-1516567727245-ad8c68f3ec1c?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 1,
-      "id": 1774193803339
+      "shelfId": 1
     },
     {
       "nombre": "Pingüino Friolento",
@@ -107,8 +91,7 @@
       "cantidad": 5,
       "precio": 46,
       "imagenUrl": "https://images.unsplash.com/photo-1518020382113-a71844b4047f?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 3,
-      "id": 1774193803340
+      "shelfId": 3
     },
     {
       "nombre": "Unicornio Arcoíris",
@@ -119,8 +102,7 @@
       "cantidad": 11,
       "precio": 15,
       "imagenUrl": "https://images.unsplash.com/photo-1582213700057-01007d472252?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 2,
-      "id": 1774193803341
+      "shelfId": 2
     },
     {
       "nombre": "Pulpito Reversible",
@@ -131,8 +113,7 @@
       "cantidad": 19,
       "precio": 17,
       "imagenUrl": "https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=800",
-      "shelfId": 3,
-      "id": 1774193803342
+      "shelfId": 3
     }
   ]
 }

@@ -40,8 +40,9 @@ pids
 coverage/
 
 # Uploads
+/backend/assets/seed/images/*
+/src/img/
 /backend/uploads/*
-!backend/uploads/.gitkeep
 
 # Azure
 web.config

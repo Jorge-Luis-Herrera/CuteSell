@@ -8,11 +8,60 @@ export class InventoryService implements OnModuleInit {
     ? '/home/data/db.json'
     : path.join(process.cwd(), 'data', 'db.json');
 
-  onModuleInit() {
+  async onModuleInit() {
     if (!fs.existsSync(path.dirname(this.dbPath))) {
       fs.mkdirSync(path.dirname(this.dbPath), { recursive: true });
     }
     this.ensureDbStructure();
+    await this.seedInitialData();
+  }
+
+  private async seedInitialData() {
+    try {
+      const data = await this.getData();
+      
+      // If we already have products, we don't seed.
+      if (data.products && data.products.length > 0) return;
+
+      // In Azure, if the app is organized as per DEPLOY-AZURE.md, 
+      // the root might be /site/wwwroot. 
+      // Based on our repo, the assets are in backend/assets/
+      const cwd = process.cwd();
+      const seedPaths = [
+        path.join(cwd, 'assets', 'seed', 'initial_products.json'),
+        path.join(cwd, 'backend', 'assets', 'seed', 'initial_products.json'),
+        path.join(__dirname, '..', 'assets', 'seed', 'initial_products.json'),
+        '/site/wwwroot/backend/assets/seed/initial_products.json'
+      ];
+
+      const seedPath = seedPaths.find(p => fs.existsSync(p));
+      
+      if (!seedPath) return;
+
+      const seedData = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+      const uploadsPath = process.env.NODE_ENV === 'production' ? '/home/data/uploads' : path.join(process.cwd(), 'uploads');
+      
+      if (!fs.existsSync(uploadsPath)) {
+        fs.mkdirSync(uploadsPath, { recursive: true });
+      }
+
+      seedData.products.forEach((product, index) => {
+        data.products.push({
+          ...product,
+          id: Date.now() + index,
+          imagenUrl: product.imagenUrl || null
+        });
+      });
+
+      if (seedData.shelves) {
+        data.shelves = seedData.shelves;
+      }
+
+      await this.saveData(data);
+      console.log('[SEED] Success! 10 plushies added to the database.');
+    } catch (e) {
+      console.error('[SEED] Error during seeding process:', e);
+    }
   }
 
   private ensureDbStructure() {
