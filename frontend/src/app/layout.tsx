@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
-import Header from '@/components/Header/Header';
 import { SearchProvider } from '@/contexts/SearchContext';
+import LayoutWrapper from '@/components/LayoutWrapper/LayoutWrapper';
 import './globals.css';
 
 const outfit = Outfit({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800', '900'] });
@@ -23,10 +23,7 @@ export default function RootLayout({
       >
         <div id="dev-overlay-remover" />
         <SearchProvider>
-          <Header />
-          <main>
-            {children}
-          </main>
+          <LayoutWrapper>{children}</LayoutWrapper>
         </SearchProvider>
         
         {/* Dynamic Dev Overlay Remover */}

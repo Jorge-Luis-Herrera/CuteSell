@@ -157,6 +157,19 @@
   }
 
   .actions {
+    display: flex;
+    order: 4;
+  }
+
+  .adminBtn {
+    padding: 8px;
+    border-radius: 50%;
+    min-width: 36px;
+    height: 36px;
+    justify-content: center;
+  }
+
+  .adminBtn span {
     display: none;
   }
 
